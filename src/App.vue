@@ -5,13 +5,15 @@
     </div>
     <br>
 
-    <p>{{this.colors}}</p>
+<!--    <p>{{this.colors}}</p>-->
 
-    <button type="button" class="btn btn-dark button" data-toggle="modal" data-target="#add">
+    <div class="justify-content-center container-fluid">
+      <button type="button" class="btn btn-block btn-dark button" data-toggle="modal" data-target="#add">
       <span>
         Add Color to Palette
       </span>
-    </button>
+      </button>
+    </div>
 
     <!-- The ADD Modal -->
     <div class="modal" id="add">
@@ -118,7 +120,7 @@
 export default {
   data () {
     return {
-      colors: ['#FFEE00','#123123','#456456','#756765','#3215ac','#123346','#765345'],
+      colors: ['#e63946','#f1faee','#a8dadc','#457b9d','#1d3557'],
       hover: false,
       inputColor: '#6e6e6e',
       changingIndex: 0,
@@ -198,16 +200,17 @@ export default {
   }
   .color label{
     /*height: auto;*/
+    text-align: center;
+
     height: 50px;
-    width: auto;
-    transition: all 0.5s;
+    width: 20%;
+    transition:  0.5s;
   }
   .color:hover label{
     /*height: auto;*/
-    text-align: center;
-    /*border-radius: 25px;*/
-    width: auto;
-    transition: all 0.5s;
+    border-radius: 25px;
+    width: 100%;
+    transition:  0.5s;
   }
   .color button{
     margin: 0 5px;
@@ -268,9 +271,11 @@ export default {
     transition: transform 1s;
   }
   .list-title{
+    font-family: Consolas;
     background-color: #00000077;
     border-radius: 5px;
     padding: 4px 12px;
+    /*height: 100%;*/
     color: white;
     font-size: 30px;
   }
