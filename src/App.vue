@@ -28,10 +28,12 @@
             <div class="flex-grow-1">
               <label class="list-title">{{ color }}</label>
             </div>
-
-            <button class="btn list-btn btn-sm" @click="removeColor(index)">remove color</button>
-            <button class="btn list-btn btn-sm" @click="changeColor(index)">change color</button>
-            <button class="btn list-btn btn-sm" @click="copyColor(index)">copy hex</button>
+              <button class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
+              <button class="btn list-btn btn-sm" @click="changeColor(index)"><i class="fa fa-refresh"></i></button>
+              <button class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
+<!--            <button class="btn list-btn btn-sm" @click="removeColor(index)">remove color</button>-->
+<!--            <button class="btn list-btn btn-sm" @click="changeColor(index)">change color</button>-->
+<!--            <button class="btn list-btn btn-sm" @click="copyColor(index)">copy hex</button>-->
           </div>
 
         </li>
@@ -141,5 +143,10 @@ export default {
     border-radius: 5px;
     padding: 4px 12px;
     color: white;
+  }
+  .list-btn{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
   }
 </style>
