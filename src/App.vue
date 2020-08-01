@@ -103,7 +103,7 @@
               <div class="flex-grow-1">
                 <label class=" display-2 list-title">{{ color }}</label>
               </div>
-              <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
+              <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)" style="margin-left: 10px"><i class="fa fa-trash"></i></button>
               <button data-toggle="tooltip" data-placement="right" title="Change Color" class="btn list-btn btn-sm" @click="setIndex(index)"><i class="fa fa-refresh" data-toggle="modal" data-target="#change"></i></button>
               <button data-toggle="tooltip" data-placement="right" title="Copy HEX" class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
             </div>
@@ -200,17 +200,19 @@ export default {
   }
   .color label{
     /*height: auto;*/
+    min-width: 180px;
     text-align: center;
-
-    height: 50px;
+    opacity: 0.5;
+    height: 40px;
     width: 20%;
-    transition:  0.5s;
+    transition:  0.5s ease-out;
   }
   .color:hover label{
     /*height: auto;*/
-    border-radius: 25px;
+    opacity: 1;
+    border-radius: 20px;
     width: 100%;
-    transition:  0.5s;
+    transition:  0.5s ease-out;
   }
   .color button{
     margin: 0 5px;
@@ -268,7 +270,7 @@ export default {
   .palette {
     padding: 5px;
     border-radius: 10px;
-    transition: transform 1s;
+    transition: transform 1s ease-out;
   }
   .list-title{
     font-family: Consolas;
@@ -277,11 +279,12 @@ export default {
     padding: 4px 12px;
     /*height: 100%;*/
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+    /*text-align-all: center;*/
   }
   .list-btn{
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
   }
   .hr-text {
@@ -324,6 +327,8 @@ export default {
     top: 0;
     right: -20px;
     transition: 0.5s;
+    color: #42b983;
+    font-weight: bolder;
   }
 
   .button:hover span {
