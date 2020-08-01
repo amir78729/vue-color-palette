@@ -3,6 +3,7 @@
     <div class="justify-content-center row header">
       <h1 class="display-4 text-light">Color Palette</h1>
     </div>
+    <br>
     <div class="row container">
       <form>
         <div class="input-group">
@@ -14,6 +15,47 @@
       <button @click="addColor" class="btn btn-dark">add color</button>
     </div>
     <hr>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Open modal
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header modal-header-design">
+            <h4 class="modal-title">Add New Color</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row container">
+              <form style="margin-right: 20px">
+                <div class="input-group">
+                  <label>
+                    <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
+                  </label>
+                </div>
+              </form>
+              <div>
+                <h5>Please pick a Color</h5>
+                <label  style="text-shadow: 0px 0px 3px black"
+                         :style="{color: this.inputColor}">{{ this.inputColor }}</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" >Done</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
 <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
@@ -86,6 +128,12 @@ export default {
 </script>
 
 <style>
+
+  .modal-header-design{
+    background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
+    color: white;
+    border: none;
+  }
   .header{
     background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
     box-shadow: 0 0 20px 0 #000000 ;
