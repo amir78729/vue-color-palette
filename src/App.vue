@@ -1,16 +1,19 @@
 <template>
-  <div class=" container-fluid ">
+  <div class=" container-fluid bg-light">
     <div class="justify-content-center row header">
       <h1 class="display-4 text-light">Color Palette</h1>
     </div>
     <br>
+
+    <p>{{this.colors}}</p>
+
     <button type="button" class="btn btn-dark button" data-toggle="modal" data-target="#add">
       <span>
         Add Color to Palette
       </span>
     </button>
 
-    <!-- The Modal -->
+    <!-- The ADD Modal -->
     <div class="modal" id="add">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -44,31 +47,69 @@
         </div>
       </div>
     </div>
-    <hr>
+
+    <!-- The CHANGE Modal -->
+    <div class="modal" id="change">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header modal-header-design">
+            <h4 class="modal-title">Change Color</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row container">
+              <form style="margin-right: 20px">
+                <div class="input-group">
+                  <label>
+                    <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
+                  </label>
+                </div>
+              </form>
+              <div>
+                <h5>Please pick a Color</h5>
+<!--                <p>{{this.changingIndex}}</p>-->
+                <label  style="text-shadow: 0px 0px 3px black"
+                        :style="{color: this.inputColor}">{{ this.inputColor }}</label>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+<!--            <button type="button" class="btn btn-dark" @click="changeColor()" >{{this.changingIndex}}|{{this.inputColor}}|Change</button>-->
+            <button type="button" class="btn btn-dark" @click="changeColor()" data-dismiss="modal" >Change</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
 <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
 <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
-    <ul class="list-group bg-dark palette" v-if="colors.length!==0">
-      <transition-group name="slide" type="in-out">
-        <li class="list-group-item color "
-            v-for="(color, index) in colors"
-            :key="color"
-            :style="{backgroundColor: colors[index]}"
-            >
-          <div  class="d-flex color-row">
-            <div class="flex-grow-1">
-              <label class=" display-2 list-title">{{ color }}</label>
-            </div>
+    <div class="">
+      <ul class="list-group bg-dark palette " v-if="colors.length!==0" style="margin-bottom: 50px">
+        <transition-group name="slide" type="in-out">
+          <li class="list-group-item color "
+              v-for="(color, index) in colors"
+              :key="color"
+              :style="{backgroundColor: colors[index]}"
+          >
+            <div  class="d-flex color-row">
+              <div class="flex-grow-1">
+                <label class=" display-2 list-title">{{ color }}</label>
+              </div>
               <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
-              <button data-toggle="tooltip" data-placement="right" title="Change Color"class="btn list-btn btn-sm" @click="changeColor(index)"><i class="fa fa-refresh"></i></button>
-              <button data-toggle="tooltip" data-placement="right" title="Copy HEX"class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
-<!--            <button class="btn list-btn btn-sm" @click="removeColor(index)">remove color</button>-->
-<!--            <button class="btn list-btn btn-sm" @click="changeColor(index)">change color</button>-->
-<!--            <button class="btn list-btn btn-sm" @click="copyColor(index)">copy hex</button>-->
-          </div>
+              <button data-toggle="tooltip" data-placement="right" title="Change Color" class="btn list-btn btn-sm" @click="setIndex(index)"><i class="fa fa-refresh" data-toggle="modal" data-target="#change"></i></button>
+              <button data-toggle="tooltip" data-placement="right" title="Copy HEX" class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
+            </div>
 
-        </li>
-      </transition-group>
-    </ul>
+          </li>
+        </transition-group>
+      </ul>
+    </div>
 
   </div>
 </template>
@@ -80,12 +121,16 @@ export default {
       colors: ['#FFEE00','#123123','#456456','#756765','#3215ac','#123346','#765345'],
       hover: false,
       inputColor: '#6e6e6e',
+      changingIndex: 0,
     }
   },
   methods: {
-    changeColor (index) {
-      alert(index)
-      document.getElementsByClassName('h').style.backgroundColor = this.colors[index]
+    changeColor () {
+      // document.getElementsByClassName('h').style.backgroundColor = this.colors[index]
+      this.colors.splice(this.changingIndex, 1, this.inputColor)
+      // this.colors[this.changingIndex] = this.inputColor;
+      // alert(this.colors[this.changingIndex])
+
     },
     addColor(color){
       this.colors.push(this.inputColor);
@@ -96,7 +141,6 @@ export default {
       this.colors.splice(index,1)
     },
     copyColor(index){
-
       const el = document.createElement('textarea')
       // Set value (string to be copied)
       el.value = this.colors[index]
@@ -110,6 +154,9 @@ export default {
       document.execCommand('copy');
       // Remove temporary element
       document.body.removeChild(el);
+    },
+    setIndex(index){
+      this.changingIndex = index;
     }
   }
 }
@@ -117,11 +164,11 @@ export default {
 
 <style>
   body{
-    background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/69/77/IRvbLk.jpg");
+    /*background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/69/77/IRvbLk.jpg");*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    /*background-color : black;*/
+    /*background-color : #222222;*/
   }
   .modal-header-design{
     background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
