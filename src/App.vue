@@ -1,118 +1,122 @@
 <template>
-  <div class=" container-fluid bg-light">
-    <div class="justify-content-center row header">
-      <h1 class="display-4 text-light">Color Palette</h1>
-    </div>
-    <br>
+  <div style="position: relative; height: 100%">
+    <div class=" container-fluid bg-light" >
+      <div class="justify-content-center row header">
+        <h1 class="display-4 text-light">Color Palette</h1>
+      </div>
+      <br>
 
-<!--    <p>{{this.colors}}</p>-->
+      <!--    <p>{{this.colors}}</p>-->
 
-    <div class="justify-content-center container-fluid">
-      <button type="button" class="btn btn-block btn-dark button" data-toggle="modal" data-target="#add">
+      <div class="justify-content-center container-fluid">
+        <button type="button" class="btn btn-block btn-dark button" data-toggle="modal" data-target="#add">
       <span>
         Add Color to Palette
       </span>
-      </button>
-    </div>
+        </button>
+      </div>
 
-    <!-- The ADD Modal -->
-    <div class="modal" id="add">
-      <div class="modal-dialog">
-        <div class="modal-content">
+      <!-- The ADD Modal -->
+      <div class="modal" id="add">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-          <!-- Modal Header -->
-          <div class="modal-header modal-header-design">
-            <h4 class="modal-title">Add New Color</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="row container">
-              <form style="margin-right: 20px">
-                <div class="input-group">
-                  <label>
-                    <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
-                  </label>
+            <!-- Modal Header -->
+            <div class="modal-header modal-header-design">
+              <h4 class="modal-title">Add New Color</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row container">
+                <form style="margin-right: 20px">
+                  <div class="input-group">
+                    <label>
+                      <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
+                    </label>
+                  </div>
+                </form>
+                <div>
+                  <h5>Please pick a Color</h5>
+                  <label  style="text-shadow: 0px 0px 3px black"
+                          :style="{color: this.inputColor}">{{ this.inputColor }}</label>
                 </div>
-              </form>
-              <div>
-                <h5>Please pick a Color</h5>
-                <label  style="text-shadow: 0px 0px 3px black"
-                         :style="{color: this.inputColor}">{{ this.inputColor }}</label>
               </div>
             </div>
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-dark" @click="addColor()" data-dismiss="modal" >Done</button>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" @click="addColor()" data-dismiss="modal" >Done</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- The CHANGE Modal -->
-    <div class="modal" id="change">
-      <div class="modal-dialog">
-        <div class="modal-content">
+      <!-- The CHANGE Modal -->
+      <div class="modal" id="change">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-          <!-- Modal Header -->
-          <div class="modal-header modal-header-design">
-            <h4 class="modal-title">Change Color</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="row container">
-              <form style="margin-right: 20px">
-                <div class="input-group">
-                  <label>
-                    <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
-                  </label>
+            <!-- Modal Header -->
+            <div class="modal-header modal-header-design">
+              <h4 class="modal-title">Change Color</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row container">
+                <form style="margin-right: 20px">
+                  <div class="input-group">
+                    <label>
+                      <input type="color" style="width: 100px; height: 100px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
+                    </label>
+                  </div>
+                </form>
+                <div>
+                  <h5>Please pick a Color</h5>
+                  <!--                <p>{{this.changingIndex}}</p>-->
+                  <label  style="text-shadow: 0px 0px 3px black"
+                          :style="{color: this.inputColor}">{{ this.inputColor }}</label>
                 </div>
-              </form>
-              <div>
-                <h5>Please pick a Color</h5>
-<!--                <p>{{this.changingIndex}}</p>-->
-                <label  style="text-shadow: 0px 0px 3px black"
-                        :style="{color: this.inputColor}">{{ this.inputColor }}</label>
               </div>
             </div>
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-<!--            <button type="button" class="btn btn-dark" @click="changeColor()" >{{this.changingIndex}}|{{this.inputColor}}|Change</button>-->
-            <button type="button" class="btn btn-dark" @click="changeColor()" data-dismiss="modal" >Change</button>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <!--            <button type="button" class="btn btn-dark" @click="changeColor()" >{{this.changingIndex}}|{{this.inputColor}}|Change</button>-->
+              <button type="button" class="btn btn-dark" @click="changeColor()" data-dismiss="modal" >Change</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <br>
-    <br>
-<!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
-<!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
-    <div class="">
-      <ul class="list-group bg-dark palette " v-if="colors.length!==0" style="margin-bottom: 50px">
-        <transition-group name="slide" type="in-out">
-          <li class="list-group-item color "
-              v-for="(color, index) in colors"
-              :key="color"
-              :style="{backgroundColor: colors[index]}"
-          >
-            <div  class="d-flex color-row">
-              <div class="flex-grow-1">
-                <label class=" display-2 list-title">{{ color }}</label>
+      <!--    <br>-->
+      <br>
+      <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
+      <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
+      <div class="">
+        <ul class="list-group bg-dark palette " v-if="colors.length!==0" style="margin-bottom: 50px">
+          <transition-group name="slide" type="in-out">
+            <li class="list-group-item color "
+                v-for="(color, index) in colors"
+                :key="color"
+                :style="{backgroundColor: colors[index]}"
+            >
+              <div  class="d-flex color-row">
+                <div class="flex-grow-1">
+                  <label class=" display-2 list-title">{{ color }}</label>
+                </div>
+                <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)" style="margin-left: 10px"><i class="fa fa-trash"></i></button>
+                <button data-toggle="tooltip" data-placement="right" title="Change Color" class="btn list-btn btn-sm" @click="setIndex(index)"><i class="fa fa-refresh" data-toggle="modal" data-target="#change"></i></button>
+                <button data-toggle="tooltip" data-placement="right" title="Copy HEX" class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
               </div>
-              <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)" style="margin-left: 10px"><i class="fa fa-trash"></i></button>
-              <button data-toggle="tooltip" data-placement="right" title="Change Color" class="btn list-btn btn-sm" @click="setIndex(index)"><i class="fa fa-refresh" data-toggle="modal" data-target="#change"></i></button>
-              <button data-toggle="tooltip" data-placement="right" title="Copy HEX" class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
-            </div>
 
-          </li>
-        </transition-group>
-      </ul>
+            </li>
+          </transition-group>
+        </ul>
+      </div>
+      <div class="justify-content-center row header" style=" bottom: 0">
+        <a href="https://github.com/amir78729" target="_blank"><i class="fa fa-github" style="color: white"></i></a>
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -179,7 +183,7 @@ export default {
   }
   .header{
     background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
-    box-shadow: 0 0 20px 0 #000000 ;
+    box-shadow: 0 0 20px 0 #00000022 ;
   }
   .color {
     margin-bottom: 5px;
@@ -202,17 +206,17 @@ export default {
     /*height: auto;*/
     min-width: 180px;
     text-align: center;
-    opacity: 0.5;
+    opacity: 0.2;
     height: 40px;
     width: 20%;
-    transition:  0.5s ease-out;
+    transition:  0.5s ;
   }
   .color:hover label{
     /*height: auto;*/
     opacity: 1;
     border-radius: 20px;
     width: 100%;
-    transition:  0.5s ease-out;
+    transition:  0.5s ;
   }
   .color button{
     margin: 0 5px;
