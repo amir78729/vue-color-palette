@@ -1,26 +1,17 @@
 <template>
-  <div class=" container-fluid bg-light">
+  <div class=" container-fluid ">
     <div class="justify-content-center row header">
       <h1 class="display-4 text-light">Color Palette</h1>
     </div>
     <br>
-    <div class="row container">
-      <form>
-        <div class="input-group">
-          <label>
-            <input type="color" style="width: 50px; height: 50px; padding: 0; border: none; background-color: #00000000" v-model="inputColor">
-          </label>
-        </div>
-      </form>
-      <button @click="addColor" class="btn btn-dark">add color</button>
-    </div>
-    <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      Open modal
+    <button type="button" class="btn btn-dark button" data-toggle="modal" data-target="#add">
+      <span>
+        Add Color to Palette
+      </span>
     </button>
 
     <!-- The Modal -->
-    <div class="modal" id="myModal">
+    <div class="modal" id="add">
       <div class="modal-dialog">
         <div class="modal-content">
 
@@ -29,7 +20,6 @@
             <h4 class="modal-title">Add New Color</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-
           <!-- Modal body -->
           <div class="modal-body">
             <div class="row container">
@@ -47,16 +37,14 @@
               </div>
             </div>
           </div>
-
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark" >Done</button>
+            <button type="button" class="btn btn-dark" @click="addColor()" data-dismiss="modal" >Done</button>
           </div>
-
         </div>
       </div>
     </div>
-
+    <hr>
 <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
 <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
     <ul class="list-group bg-dark palette" v-if="colors.length!==0">
@@ -91,7 +79,7 @@ export default {
     return {
       colors: ['#FFEE00','#123123','#456456','#756765','#3215ac','#123346','#765345'],
       hover: false,
-      inputColor: 'select:',
+      inputColor: '#6e6e6e',
     }
   },
   methods: {
@@ -128,7 +116,13 @@ export default {
 </script>
 
 <style>
-
+  body{
+    background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/69/77/IRvbLk.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    /*background-color : black;*/
+  }
   .modal-header-design{
     background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
     color: white;
@@ -249,5 +243,43 @@ export default {
     opacity: .5;
 
 
+  }
+  .button {
+    /*border-radius: 4px;*/
+    /*background-color: #f4511e;*/
+    /*border: none;*/
+    /*color: #FFFFFF;*/
+    text-align: center;
+    /*font-size: 28px;*/
+    /*padding: 20px;*/
+    /*width: 200px;*/
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '+';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .button:hover span {
+    padding-right: 25px;
+  }
+
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
   }
 </style>
