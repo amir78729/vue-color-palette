@@ -17,16 +17,16 @@
     <br>
 <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
 <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
-    <ul class="list-group bg-dark palette">
+    <ul class="list-group bg-dark palette" v-if="colors.length!==0">
       <transition-group name="slide" type="in-out">
         <li class="list-group-item color "
             v-for="(color, index) in colors"
             :key="color"
             :style="{backgroundColor: colors[index]}"
             >
-          <div  class="d-flex">
+          <div  class="d-flex color-row">
             <div class="flex-grow-1">
-              <label class="list-title">{{ color }}</label>
+              <label class=" display-2 list-title">{{ color }}</label>
             </div>
               <button class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
               <button class="btn list-btn btn-sm" @click="changeColor(index)"><i class="fa fa-refresh"></i></button>
@@ -64,6 +64,28 @@ export default {
     },
     removeColor(index){
       this.colors.splice(index,1)
+    },
+    copyColor(index){
+      //
+      // let copyText = color;
+      // copyText.select();
+      // copyText.setSelectionRange(0, 99999)
+      // document.execCommand("copy");
+      // alert("Copied the text: " + copyText.value);
+      // Create new element
+      const el = document.createElement('textarea')
+      // Set value (string to be copied)
+      el.value = this.colors[index]
+      // Set non-editable to avoid focus and move outside of view
+      el.setAttribute('readonly', '');
+      el.style = {position: 'absolute', left: '-9999px'};
+      document.body.appendChild(el);
+      // Select text inside element
+      el.select();
+      // Copy text to clipboard
+      document.execCommand('copy');
+      // Remove temporary element
+      document.body.removeChild(el);
     }
   }
 }
@@ -81,12 +103,25 @@ export default {
   .color button{
     /*height: 0;*/
     opacity: 0;
-    transition: all .2s;
+    transition: all .5s;
   }
   .color:hover button{
     /*height: auto;*/
     opacity: 1;
-    transition: all .2s;
+    transition: all .5s;
+  }
+  .color label{
+    /*height: auto;*/
+    height: 50px;
+    width: auto;
+    transition: all 0.5s;
+  }
+  .color:hover label{
+    /*height: auto;*/
+    text-align: center;
+    /*border-radius: 25px;*/
+    width: auto;
+    transition: all 0.5s;
   }
   .color button{
     margin: 0 5px;
@@ -96,6 +131,14 @@ export default {
   .color button:hover{
     background-color: #00000099;
     color: white;
+  }
+  .color-row{
+    height: auto;
+    transition: height 0.5s;
+  }
+  .color-row:hover{
+    height: auto;
+    transition: height 0.5s;
   }
   .slide-enter{
     opacity: 0;
@@ -143,6 +186,7 @@ export default {
     border-radius: 5px;
     padding: 4px 12px;
     color: white;
+    font-size: 30px;
   }
   .list-btn{
     height: 50px;
