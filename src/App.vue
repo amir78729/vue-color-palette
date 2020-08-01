@@ -3,7 +3,7 @@
     <div class="justify-content-center row header">
       <h1 class="display-4 text-light">Color Palette</h1>
     </div>
-    <div class="row">
+    <div class="row container">
       <form>
         <div class="input-group">
           <label>
@@ -13,8 +13,8 @@
       </form>
       <button @click="addColor" class="btn btn-dark">add color</button>
     </div>
+    <hr>
 
-    <br>
 <!--    <button @click="changeColor" class="btn btn-primary">change color</button>-->
 <!--    <div class="color" style="height: 100px; width: 100px; background-color: black"></div>-->
     <ul class="list-group bg-dark palette" v-if="colors.length!==0">
@@ -28,9 +28,9 @@
             <div class="flex-grow-1">
               <label class=" display-2 list-title">{{ color }}</label>
             </div>
-              <button class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
-              <button class="btn list-btn btn-sm" @click="changeColor(index)"><i class="fa fa-refresh"></i></button>
-              <button class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
+              <button data-toggle="tooltip" data-placement="right" title="Remove Color" class="btn list-btn btn-sm" @click="removeColor(index)"><i class="fa fa-trash"></i></button>
+              <button data-toggle="tooltip" data-placement="right" title="Change Color"class="btn list-btn btn-sm" @click="changeColor(index)"><i class="fa fa-refresh"></i></button>
+              <button data-toggle="tooltip" data-placement="right" title="Copy HEX"class="btn list-btn btn-sm" @click="copyColor(index)"><i class="fa fa-copy"></i></button>
 <!--            <button class="btn list-btn btn-sm" @click="removeColor(index)">remove color</button>-->
 <!--            <button class="btn list-btn btn-sm" @click="changeColor(index)">change color</button>-->
 <!--            <button class="btn list-btn btn-sm" @click="copyColor(index)">copy hex</button>-->
@@ -66,13 +66,7 @@ export default {
       this.colors.splice(index,1)
     },
     copyColor(index){
-      //
-      // let copyText = color;
-      // copyText.select();
-      // copyText.setSelectionRange(0, 99999)
-      // document.execCommand("copy");
-      // alert("Copied the text: " + copyText.value);
-      // Create new element
+
       const el = document.createElement('textarea')
       // Set value (string to be copied)
       el.value = this.colors[index]
@@ -93,8 +87,8 @@ export default {
 
 <style>
   .header{
-    background-image: url("https://wallup.net/wp-content/uploads/2018/09/25/629276-abstract-colorful.jpg");
-
+    background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/94/3/Y7V4l0.jpg");
+    box-shadow: 0 0 20px 0 #000000 ;
   }
   .color {
     margin-bottom: 5px;
@@ -109,6 +103,9 @@ export default {
     /*height: auto;*/
     opacity: 1;
     transition: all .5s;
+  }
+  .color:hover{
+    /*box-shadow: 10px 0px 20px 20px #00000033 inset;*/
   }
   .color label{
     /*height: auto;*/
@@ -192,5 +189,17 @@ export default {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+  }
+  .hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+
+
   }
 </style>
