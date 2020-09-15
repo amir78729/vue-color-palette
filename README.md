@@ -29,8 +29,13 @@ After choosing the color from the color picker, after pressing Done the selected
 
 ### Modify a color
 
-When the mouse pointer enters into color, we can see some options inside the color. For example, if the mouse enters into the last color of the palette, this will happen:
+When the mouse pointer enters into color, we can see some options inside the color. 
 
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/732234196487241741/755396874499784754/unknown.png" width="200px">
+</p>
+
+For example, if the mouse enters into the last color of the palette, this will happen:
 
 <p align="center">
   <img src="https://cdn.discordapp.com/attachments/732234196487241741/755393032718778408/unknown.png" width="900px">
